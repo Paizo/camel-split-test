@@ -23,7 +23,9 @@ public class MyService {
     @SuppressWarnings("unused")
     public A updateAWithBResults(A a, List<B> bResults) {
         a.setBList(bResults);
+        a.getBList().removeIf(b -> (b.getValue() != null && b.getValue().equals("skip")));
         for (B b: a.getBList()) {
+            a.getBList().removeIf(c -> (c.getValue() != null && c.getValue().equals("skip")));
             for (C c: b.getCList()) {
                 // do stuff
             }
@@ -34,6 +36,10 @@ public class MyService {
     @SuppressWarnings("unused")
     public B updateBWithCResults(B b, List<C> cResults) {
         b.setCList(cResults);
+        b.getCList().removeIf(c -> (c.getValue() != null && c.getValue().equals("skip")));
+        for (C c: b.getCList()) {
+            //test
+        }
         return b;
     }
 }
